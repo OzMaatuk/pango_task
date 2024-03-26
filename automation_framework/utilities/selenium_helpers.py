@@ -3,27 +3,34 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
+from configparser import ConfigParser
 
-SEARCH_BAR_XPATH="/html/body/div[5]/header/div[2]/div/form/input"
-TEMP_LABEL_XPATH="/html/body/div[5]/main/article/section[2]/div[1]/div[1]/div/table/tbody/tr[3]/td[1]"
 
 class TemperatureExtractor:
     def __init__(self):
         options = webdriver.ChromeOptions()
-        options.add_argument('--headless')
+        # options.add_argument('--headless')
         self.driver = webdriver.Chrome(options=options)
+        configur = ConfigParser()
+        configur.read('automation_framework\\config\\config.ini') 
+        BASE_URL=configur.get('API', 'BASE_URL')
+        self.SEARCH_BAR_XPATH=configur.get('OTHER', 'SEARCH_BAR_XPATH')
+        self.TEMP_LABEL_XPATH=configur.get('OTHER', 'TEMP_LABEL_XPATH')
+        self.BASE_URL=configur.get('OTHER', 'BASE_URL')
+
 
     def get_temperature(self, city):
-        self.driver.get('https://www.timeanddate.com/weather/')
+        self.driver.get(self.BASE_URL)
 
         try:
             # Wait for search box and type city
-            search_box = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, SEARCH_BAR_XPATH)))
+            search_box = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, self.SEARCH_BAR_XPATH)))
             search_box.send_keys(city)
             search_box.submit()
 
             # Wait for temperature element (replace with more specific selector if possible)
-            temperature_element = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, TEMP_LABEL_XPATH)))
+            temperature_element = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, self.TEMP_LABEL_XPATH)))
+            print(temperature_element.text)
             return temperature_element.text
         except (TimeoutException, NoSuchElementException) as e:
             print(f"Error extracting temperature: {e}")
