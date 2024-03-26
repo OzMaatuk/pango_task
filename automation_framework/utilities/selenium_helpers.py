@@ -24,6 +24,7 @@ class TemperatureExtractor:
         # Wait for search box and type city
         search_box = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.XPATH, self.SEARCH_BAR_XPATH)))
         search_box.send_keys(city)
+        search_box.submit()
         
         search_first_element = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.XPATH, self.FIRST_ELEMENT_XPATH)))
         search_first_element.click()
