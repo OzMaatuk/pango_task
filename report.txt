@@ -1,0 +1,8 @@
+For city Meira, OpenWeatherMap was: 3.09, while timeanddate was 13
+For city De Knipe, OpenWeatherMap was: 9.09, while timeanddate was 25
+For city Fudong, OpenWeatherMap was: 5.77, while timeanddate was 9
+For city Sunbilla, OpenWeatherMap was: 6.6, while timeanddate was 15
+For city Endlichhofen, OpenWeatherMap was: 7.95, while timeanddate was 2
+For city Staiti, OpenWeatherMap was: 13.64, while timeanddate was 11
+For city Centreville, OpenWeatherMap was: 15.27, while timeanddate was 5
+For city Edgemere, OpenWeatherMap was: 12.47, while timeanddate was 27
