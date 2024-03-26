@@ -8,8 +8,14 @@ The project based on `pytest` and should be executed with `pytest -s automation_
 
 The code in `automation_framework\utilities` was provided, need to implement the tests following the cases described in the `task.md` file.
 
+The Bonus section output file will be in `report.txt` file on the top directory.
+
 ### Note to the reviewer:
 
 Wish that i did get the purpose of the task, when dynamicly adding and calculating the avarage temp.
 
 But it's actually not testing the API, but more like testing the DB operations, so i'm not sure.
+
+Additionally, about the "", thought you wanted to use the `https://api.openweathermap.org/geo/1.0/direct?q={}&limit={}`, but didn't managed to get 100 countried in efficient way.
+
+So just used json file for countries list.
