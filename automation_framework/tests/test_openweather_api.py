@@ -11,6 +11,11 @@ def api():
 def db():
     return DatabaseHelper()
 
+@pytest.fixture(scope="module")
+def add_column(db):
+    return DatabaseHelper.add_column(db,"avg")
+
+
 
 @pytest.mark.parametrize("city", [
                                     ("london"),
@@ -18,7 +23,6 @@ def db():
                                     ("ness ziona")
                                 ])
 def test_get_current_weather(city, api, db):
-    DatabaseHelper.create_tables(db)
     res = ApiHelper.get_current_weather_celsius(api, city)
 
     # - Validate Status Code.
@@ -49,8 +53,7 @@ def test_get_current_weather(city, api, db):
                                     ("833"),
                                     ("2643743"),
                                 ])
-def test_get_weather_data_avarage(city_id, api, db):
-    DatabaseHelper.create_tables(db)
+def test_get_weather_data_avarage(city_id, api, db, add_column):
     res = ApiHelper.get_current_weather_by_id(api, city_id)
     data=res.json()
     # print(data)
@@ -59,7 +62,6 @@ def test_get_weather_data_avarage(city_id, api, db):
     AssertionHelper.assert_keys(data)
     
     # - Create a new database column for the average temperature of each city.
-    DatabaseHelper.add_column(db,"avg")
 
     # - Insert temperature and feels_like responses for each city into the database.
     tpl=DatabaseHelper.get_weather_data(db, city_id)

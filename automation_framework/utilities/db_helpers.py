@@ -8,11 +8,15 @@ class DatabaseHelper:
 
     def __init__(self, db_name=DB_NAME):
         self.conn = sqlite3.connect(db_name)
+        self.delete_tables()
         self.create_tables()
+
+    def delete_tables(self):
+        with self.conn:
+            self.conn.execute("DROP TABLE weather_data")
 
     def create_tables(self):
         with self.conn: 
-            self.conn.execute("DROP TABLE weather_data")
             self.conn.execute('''CREATE TABLE IF NOT EXISTS weather_data (
                 city TEXT PRIMARY KEY,
                 temperature REAL,
