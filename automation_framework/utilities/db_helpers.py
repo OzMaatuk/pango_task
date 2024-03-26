@@ -21,7 +21,7 @@ class DatabaseHelper:
 
     def add_column(self, name):
         with self.conn:
-            self.conn.execute("ALTER TABLE weather_data ADD COLUMN ? REAL", (name,))
+            self.conn.execute(f"ALTER TABLE weather_data ADD COLUMN {name} REAL")
 
     def insert_weather_data(self, city, temperature, feels_like):
         # Insert weather data for a city
@@ -32,8 +32,7 @@ class DatabaseHelper:
     def update_weather_data(self, city, col, value):
         with self.conn:
             cursor = self.conn.cursor()
-            cursor.execute("SELECT * FROM weather_data WHERE city = ?", (city,))
-            cursor.execute("UPDATE weather_data SET ? = ? WHERE city = ?", (col, value, city))
+            cursor.execute(f"UPDATE weather_data SET {col} = {value} WHERE city = {city}")
 
     def get_weather_data(self, city):
         # Get weather data for a city
@@ -46,6 +45,6 @@ class DatabaseHelper:
     def get_max_by_col(self, col):
         with self.conn:
             cursor = self.conn.cursor()
-            cursor.execute("SELECT MAX( ? ) FROM weather_data", (col,))
+            cursor.execute(f"SELECT MAX( {col} ) FROM weather_data")
             row = cursor.fetchone()
         return row
