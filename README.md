@@ -7,3 +7,9 @@ Use the `requierments.txt` file to install dependacies with `pip install requier
 The project based on `pytest` and should be executed with `pytest -s automation_framework\tests\test_openweather_api.py`
 
 The code in `automation_framework\utilities` was provided, need to implement the tests following the cases described in the `task.md` file.
+
+### Note to the reviewer:
+
+Wish that i did get the purpose of the task, when dynamicly adding and calculating the avarage temp.
+
+But it's actually not testing the API, but more like testing the DB operations, so i'm not sure.
