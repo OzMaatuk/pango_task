@@ -54,3 +54,8 @@ def test_compare_apis(city, api, db, add_column, output_file, temperature_extrac
     # - generate report highlighting cities with temperature differences.
     if (temp != temperature):
         output_file.write(f"For city {city}, OpenWeatherMap was: {temp}, while timeanddate was {temperature}\n")
+
+
+# TODOs:
+        # ???
+        # make the coutries as fixture.

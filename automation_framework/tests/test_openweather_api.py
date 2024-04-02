@@ -57,11 +57,12 @@ def test_get_weather_data_avarage(city_id, api, db, add_column):
     res = ApiHelper.get_current_weather_by_id(api, city_id)
     data=res.json()
     # print(data)
+    AssertionHelper.assert_keys(data)
     temp=data['main']['temp']
     feels=data['main']['feels_like']
-    AssertionHelper.assert_keys(data)
-    
+
     # - Create a new database column for the average temperature of each city.
+    # add_column()
 
     # - Insert temperature and feels_like responses for each city into the database.
     tpl=DatabaseHelper.get_weather_data(db, city_id)
@@ -82,3 +83,10 @@ def test_get_weather_data_avarage(city_id, api, db, add_column):
     # - Print the city with the highest average temperature.
     max_avg=DatabaseHelper.get_max_by_col(db, "avg")
     print("max_avg: " + str(max_avg))
+
+# TODOs:
+    # Messages,
+    # Exceptions?
+    # General funcs,
+    # pytest report,
+    # use logs not print.

@@ -12,7 +12,7 @@ class TemperatureExtractor:
         self.driver = webdriver.Chrome(options=options)
         configur = ConfigParser()
         configur.read('automation_framework\\config\\config.ini') 
-        BASE_URL=configur.get('API', 'BASE_URL')
+        self.BASE_URL=configur.get('API', 'BASE_URL')
         self.SEARCH_BAR_XPATH=configur.get('OTHER', 'SEARCH_BAR_XPATH')
         self.TEMP_LABEL_XPATH=configur.get('OTHER', 'TEMP_LABEL_XPATH')
         self.BASE_URL=configur.get('OTHER', 'BASE_URL')
@@ -46,3 +46,8 @@ class TemperatureExtractor:
 # else:
 #     print("Temperature extraction failed.")
 # extractor.close()
+
+# TODOs:
+        # make page object
+        # make states page
+        # locate objects without xpath?
