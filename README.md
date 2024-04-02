@@ -16,6 +16,6 @@ Wish that i did get the purpose of the task, when dynamicly adding and calculati
 
 But it's actually not testing the API, but more like testing the DB operations, so i'm not sure.
 
-Additionally, about the "", thought you wanted to use the `https://api.openweathermap.org/geo/1.0/direct?q={}&limit={}`, but didn't managed to get 100 countried in efficient way.
+Additionally, about the "Identify a relevant API to acquire city names for testing", thought you wanted to use the `https://api.openweathermap.org/geo/1.0/direct?q={}&limit={}`, but didn't managed to get 100 countried in efficient way.
 
 So just used json file for countries list.
